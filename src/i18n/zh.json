@@ -1,0 +1,167 @@
+{
+  "brand": {
+    "name": "BTC Pulse",
+    "tagline": "相信周期，看清回暖"
+  },
+  "nav": {
+    "today": "今日",
+    "chart": "图表",
+    "method": "哲学",
+    "settings": "设置"
+  },
+  "settings": {
+    "title": "设置",
+    "subtitle": "语言与应用偏好",
+    "language": "界面语言",
+    "languageHint": "切换后立即生效，并会记住你的选择",
+    "author": "作者",
+    "authorFallback": "BTC Pulse 作者",
+    "about": "关于 BTC Pulse"
+  },
+  "social": {
+    "welcome": "欢迎关注我的推特，获取更多周期观察与更新。",
+    "followX": "关注 @{handle}",
+    "openX": "打开推特 / X",
+    "missingX": "请在 .env 中配置 VITE_X_URL 后显示关注入口"
+  },
+  "thinking": {
+    "title": "正在思考市场冷热…",
+    "subtitle": "读取行情，计算指标，形成今日结论",
+    "steps": {
+      "connect": "连接行情与情绪数据源",
+      "price": "拉取 BTC 日线价格",
+      "sentiment": "读取 Fear & Greed 情绪",
+      "indicators": "计算 Ahr999、均线与回撤",
+      "verdict": "合成四维评分与周期结论"
+    }
+  },
+  "common": {
+    "loading": "正在读取市场…",
+    "retry": "重试",
+    "cached": "显示缓存读数",
+    "updated": "更新于 {{time}}",
+    "fetchedAt": "获取于 {{time}}",
+    "statusLive": "刚从网络获取",
+    "statusCached": "本地缓存（未重新联网）",
+    "statusOffline": "联网失败，显示上次数据",
+    "source": "数据源",
+    "offlineHint": "联网失败，以下为上次成功数据",
+
+    "updateAvailable": "有新版本",
+    "refresh": "刷新",
+    "refreshNow": "立即刷新",
+    "refreshing": "刷新中…",
+    "disclaimer": "仅供研究参考，不构成投资建议。",
+    "langZh": "中",
+    "langEn": "EN",
+    "na": "暂无"
+  },
+  "share": {
+    "title": "结论卡片",
+    "subtitle": "预览今日结论图，点按钮直接下载到相册/文件夹",
+    "preparing": "生成中…",
+    "download": "下载图片",
+    "downloaded": "已开始下载",
+    "failed": "下载失败，请重试",
+    "footer": "仅供研究参考"
+  },
+  "verdict": {
+    "regime": {
+      "deep_bear": "深寒",
+      "accumulate": "筑底",
+      "thaw": "回暖萌芽",
+      "repair": "趋势修复",
+      "warm": "偏热"
+    },
+    "temperature": {
+      "cold": "冷",
+      "neutral": "温",
+      "hot": "热"
+    },
+    "confidence": {
+      "low": "可信度低",
+      "medium": "可信度中",
+      "high": "可信度高"
+    },
+    "reason": {
+      "deep_bear": "Ahr999 为 {{ahr999}}，价格仍在 200 日均线下方，仍处深周期区域。",
+      "accumulate": "Ahr999 为 {{ahr999}}，距前高回撤 {{drawdown}}，历史上更偏耐心定投/筑底区。",
+      "thaw": "Ahr999 {{ahr999}}，价格重新站上长期均线，出现回暖萌芽信号。",
+      "repair": "趋势结构改善（Mayer {{mayer}}）；更像趋势修复，而非孤立脉冲。",
+      "warm": "Ahr999 为 {{ahr999}}，估值温度上升；热情阶段宜更克制。"
+    }
+  },
+  "dims": {
+    "stripLabel": "四维冷热",
+    "valuation": "估值",
+    "trend": "趋势",
+    "sentiment": "情绪",
+    "cycle": "周期",
+    "level": {
+      "cold": "冷",
+      "neutral": "中",
+      "warm": "暖",
+      "hot": "热"
+    }
+  },
+  "metrics": {
+    "details": "更多指标",
+    "price": "BTC 价格",
+    "ahr999": "Ahr999",
+    "mayer": "Mayer 倍数",
+    "drawdown": "距前高回撤",
+    "sma200": "SMA200",
+    "gma200": "200 日定投成本",
+    "fng": "恐惧贪婪",
+    "halving": "减半时钟",
+    "daysSince": "已过 {{n}} 天",
+    "daysTo": "距下次 {{n}} 天",
+    "return7d": "7 日涨跌",
+    "return30d": "30 日涨跌"
+  },
+  "chart": {
+    "title": "Ahr999 历史",
+    "subtitle": "一张图看懂：现在偏便宜，还是偏贵",
+    "priceTitle": "BTC 价格",
+    "needData": "请先打开「今日」以加载历史数据。",
+    "whatTitle": "这是什么？",
+    "whatBody": "Ahr999 是比特币的长期估值温度计。数字越低，通常越偏“便宜区”；数字越高，越偏“偏贵/热情区”。它帮你看周期位置，不是短线买卖点。",
+    "nowLabel": "当前读数",
+    "zone": {
+      "bottom": "抄底区",
+      "dca": "定投区",
+      "watch": "观望区"
+    },
+    "legendTitle": "怎么看这张图",
+    "legendLine": "绿色实线：每天的 Ahr999",
+    "legendLow": "蓝色虚线 0.45：抄底参考线（低于它更偏历史低位）",
+    "legendHigh": "红色虚线 1.2：偏贵参考线（高于它定投性价比下降）",
+    "zonesTitle": "三个区间，一句话看懂",
+    "zones": {
+      "bottomTitle": "低于 0.45 · 抄底区",
+      "bottomBody": "历史上较少出现。若你看好长期，这里更常被看作耐心加仓/定投的舒适区。",
+      "dcaTitle": "0.45 到 1.2 · 定投区",
+      "dcaBody": "大多数时间在这里。不极端便宜，也不明显过热，适合用纪律做长期定投。",
+      "watchTitle": "高于 1.2 · 观望区",
+      "watchBody": "估值偏热。不代表立刻会跌，但继续大力追高的性价比通常更低。"
+    },
+    "tip": "小白怎么用：先看当前落在哪个区间，再结合「今日」页的趋势与可信度，不要只看一根线做决定。",
+    "credit": "图表组件："
+  },
+  "method": {
+    "title": "哲学",
+    "intro": "BTC Pulse 只看比特币。它把少量日频指标收成一个周期结论，让你每天用十秒看清冷热，而不是淹没在图表里。",
+    "dataTitle": "数据来源",
+    "dataBody": "主行情：Binance BTCUSDT 日线收盘价（经 Binance 公开行情主机），UTC 日切。情绪：Alternative.me Fear & Greed。减半日期为内置常量。读数约数小时刷新一次，并本地缓存以便离线查看。",
+    "ahrTitle": "Ahr999 公式",
+    "ahrBody": "Ahr999 = (价格 / 200 日几何平均定投成本) × (价格 / 指数增长估值)。指数增长估值 = 10^(5.84 × log10(币龄天数) - 17.01)，创世日 2009-01-03 UTC。",
+    "weightsTitle": "维度权重",
+    "weightsBody": "估值 35% · 趋势 35% · 情绪 20% · 周期 10%。首页只展示四维灯 + 一条总结论。",
+    "limitsTitle": "局限",
+    "limitsBody": "随着比特币成熟，Ahr999 在周期顶部可能变钝。BTC Pulse 是体温计，不是交易信号。请独立判断。",
+    "confidenceNote": "BTC Pulse 写给相信长周期的人，用清晰的每日读数，确认回暖是否真的在形成。"
+  },
+  "errors": {
+    "load": "无法刷新市场数据。请检查网络后重试。"
+  }
+}

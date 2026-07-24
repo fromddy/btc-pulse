@@ -1,0 +1,167 @@
+{
+  "brand": {
+    "name": "BTC Pulse",
+    "tagline": "Trust the cycle. See the thaw."
+  },
+  "nav": {
+    "today": "Today",
+    "chart": "Chart",
+    "method": "Philosophy",
+    "settings": "Settings"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Language and app preferences",
+    "language": "Interface language",
+    "languageHint": "Applies immediately and stays remembered",
+    "author": "Author",
+    "authorFallback": "BTC Pulse author",
+    "about": "About BTC Pulse"
+  },
+  "social": {
+    "welcome": "Follow me on X for more cycle notes and updates.",
+    "followX": "Follow @{handle}",
+    "openX": "Open X / Twitter",
+    "missingX": "Set VITE_X_URL in .env to show the follow button"
+  },
+  "thinking": {
+    "title": "Thinking through market heat…",
+    "subtitle": "Fetching feeds, computing indicators, forming today’s verdict",
+    "steps": {
+      "connect": "Connecting price and sentiment sources",
+      "price": "Fetching BTC daily closes",
+      "sentiment": "Reading Fear & Greed",
+      "indicators": "Computing Ahr999, averages, and drawdown",
+      "verdict": "Scoring dimensions and regime"
+    }
+  },
+  "common": {
+    "loading": "Reading the market…",
+    "retry": "Retry",
+    "cached": "Showing cached reading",
+    "updated": "Updated {{time}}",
+    "fetchedAt": "Fetched {{time}}",
+    "statusLive": "Fresh from network",
+    "statusCached": "Local cache (no new fetch)",
+    "statusOffline": "Offline. Showing last fetch.",
+    "source": "Source",
+    "offlineHint": "Network failed. Showing last saved data.",
+
+    "updateAvailable": "Update available",
+    "refresh": "Refresh",
+    "refreshNow": "Refresh now",
+    "refreshing": "Refreshing…",
+    "disclaimer": "For research only. Not financial advice.",
+    "langZh": "中",
+    "langEn": "EN",
+    "na": "n/a"
+  },
+  "share": {
+    "title": "Verdict card",
+    "subtitle": "Preview today’s card, then download the image directly",
+    "preparing": "Preparing…",
+    "download": "Download image",
+    "downloaded": "Download started",
+    "failed": "Download failed. Please try again.",
+    "footer": "For research only"
+  },
+  "verdict": {
+    "regime": {
+      "deep_bear": "Deep winter",
+      "accumulate": "Accumulation",
+      "thaw": "Thaw beginning",
+      "repair": "Trend repair",
+      "warm": "Getting warm"
+    },
+    "temperature": {
+      "cold": "Cold",
+      "neutral": "Neutral",
+      "hot": "Hot"
+    },
+    "confidence": {
+      "low": "Low confidence",
+      "medium": "Medium confidence",
+      "high": "High confidence"
+    },
+    "reason": {
+      "deep_bear": "Ahr999 at {{ahr999}} with price still below the 200-day average. Deep-cycle territory.",
+      "accumulate": "Ahr999 at {{ahr999}}, drawdown {{drawdown}}. Historically a patient accumulation zone.",
+      "thaw": "Ahr999 {{ahr999}} with price reclaiming the long average. Early thaw signals.",
+      "repair": "Trend structure improving (Mayer {{mayer}}). Recovery looks more credible than a spike.",
+      "warm": "Ahr999 at {{ahr999}}. Valuation heat rising; treat euphoria with care."
+    }
+  },
+  "dims": {
+    "stripLabel": "Four dimensions",
+    "valuation": "Value",
+    "trend": "Trend",
+    "sentiment": "Mood",
+    "cycle": "Cycle",
+    "level": {
+      "cold": "Cold",
+      "neutral": "Mid",
+      "warm": "Warm",
+      "hot": "Hot"
+    }
+  },
+  "metrics": {
+    "details": "More metrics",
+    "price": "BTC price",
+    "ahr999": "Ahr999",
+    "mayer": "Mayer Multiple",
+    "drawdown": "ATH drawdown",
+    "sma200": "SMA200",
+    "gma200": "GMA200 cost",
+    "fng": "Fear & Greed",
+    "halving": "Halving clock",
+    "daysSince": "{{n}}d since",
+    "daysTo": "{{n}}d to next",
+    "return7d": "7D return",
+    "return30d": "30D return"
+  },
+  "chart": {
+    "title": "Ahr999 history",
+    "subtitle": "One chart for cheap vs expensive",
+    "priceTitle": "BTC price",
+    "needData": "Load Today once to populate chart history.",
+    "whatTitle": "What is this?",
+    "whatBody": "Ahr999 is a long-term Bitcoin valuation thermometer. Lower usually means cheaper cycle territory; higher means warmer or richer valuation. It helps with cycle context, not short-term trade calls.",
+    "nowLabel": "Current reading",
+    "zone": {
+      "bottom": "Bottom zone",
+      "dca": "DCA zone",
+      "watch": "Wait zone"
+    },
+    "legendTitle": "How to read the chart",
+    "legendLine": "Green line: daily Ahr999",
+    "legendLow": "Blue dashed 0.45: bottom guide (below is historically cheap)",
+    "legendHigh": "Red dashed 1.2: rich guide (above is less attractive for DCA)",
+    "zonesTitle": "Three zones, plain English",
+    "zones": {
+      "bottomTitle": "Below 0.45 · Bottom zone",
+      "bottomBody": "Rare historically. If you believe in the long cycle, this is often where patient DCA feels most comfortable.",
+      "dcaTitle": "0.45 to 1.2 · DCA zone",
+      "dcaBody": "Where most days sit. Not extreme bargain, not clearly overheated. Good for steady long-term DCA.",
+      "watchTitle": "Above 1.2 · Wait zone",
+      "watchBody": "Valuation is warm. It does not mean an instant top, but chasing hard usually has worse payoff."
+    },
+    "tip": "Beginner tip: first see which zone you are in, then check Today for trend and confidence. Do not decide from one line alone.",
+    "credit": "Charts:"
+  },
+  "method": {
+    "title": "Philosophy",
+    "intro": "BTC Pulse reads Bitcoin only. It turns a small set of daily indicators into one regime verdict, so you can check the cycle without drowning in charts.",
+    "dataTitle": "Data sources",
+    "dataBody": "Primary price feed: Binance BTCUSDT daily closes (via Binance public market-data hosts), UTC day boundary. Sentiment: Alternative.me Fear & Greed. Halving dates are embedded constants. Readings refresh about once every few hours and cache locally for offline use.",
+    "ahrTitle": "Ahr999 formula",
+    "ahrBody": "Ahr999 = (Price / 200-day geometric mean cost) x (Price / exponential growth valuation). Exponential valuation = 10^(5.84 x log10(coin age days) - 17.01), with genesis 2009-01-03 UTC.",
+    "weightsTitle": "Dimension weights",
+    "weightsBody": "Valuation 35% · Trend 35% · Sentiment 20% · Cycle 10%. The homepage shows four lights plus one summary verdict.",
+    "limitsTitle": "Limits",
+    "limitsBody": "Ahr999 can look muted near cycle tops as Bitcoin matures. BTC Pulse is a thermometer, not a trading signal. Always do your own research.",
+    "confidenceNote": "We built BTC Pulse for people who trust the long cycle and want a clear daily read on whether thaw is actually forming."
+  },
+  "errors": {
+    "load": "Could not refresh market data. Check your connection or try again."
+  }
+}
