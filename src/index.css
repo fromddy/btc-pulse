@@ -573,6 +573,7 @@ button {
 }
 
 .swatch-low {
+  height: 0.28rem;
   background: repeating-linear-gradient(
     90deg,
     #3a6d8c 0 6px,
@@ -581,6 +582,7 @@ button {
 }
 
 .swatch-high {
+  height: 0.28rem;
   background: repeating-linear-gradient(
     90deg,
     #a33b2b 0 6px,

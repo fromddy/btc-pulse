@@ -19,7 +19,7 @@ import {
 interface PulseState {
   data: PulsePayload | null
   loading: boolean
-  /** First open of the session: show thinking UI before revealing the verdict. */
+  /** Show thinking UI before revealing the verdict (initial load or forced refresh). */
   booting: boolean
   thinkingSteps: LoadStepState[]
   error: string | null
@@ -40,10 +40,13 @@ export function PulseProvider({ children }: { children: ReactNode }) {
 
   const refresh = useCallback(async (opts?: { force?: boolean }) => {
     const force = opts?.force ?? false
-    const paced = !hasBootedRef.current
+    // Replay the paced thinking animation on first load and every forced refresh.
+    const showThinking = force || !hasBootedRef.current
+    const paced = showThinking
     setLoading(true)
     setError(null)
-    if (paced || !hasBootedRef.current) {
+    if (showThinking) {
+      setBooting(true)
       setThinkingSteps(initialLoadSteps())
     }
     try {

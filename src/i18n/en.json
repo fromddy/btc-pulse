@@ -134,7 +134,7 @@
       "watch": "Wait zone"
     },
     "legendTitle": "How to read the chart",
-    "legendLine": "Green line: daily Ahr999",
+    "legendLine": "Pink line: daily Ahr999",
     "legendLow": "Blue dashed 0.45: bottom guide (below is historically cheap)",
     "legendHigh": "Red dashed 1.2: rich guide (above is less attractive for DCA)",
     "zonesTitle": "Three zones, plain English",

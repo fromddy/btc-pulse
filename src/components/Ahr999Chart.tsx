@@ -43,14 +43,14 @@ export function Ahr999Chart({ series }: { series: Ahr999Point[] }) {
 
     const low = chart.addSeries(LineSeries, {
       color: '#3a6d8c',
-      lineWidth: 1,
+      lineWidth: 2,
       lineStyle: LineStyle.Dashed,
       priceLineVisible: false,
       lastValueVisible: false,
     })
     const high = chart.addSeries(LineSeries, {
       color: '#a33b2b',
-      lineWidth: 1,
+      lineWidth: 2,
       lineStyle: LineStyle.Dashed,
       priceLineVisible: false,
       lastValueVisible: false,

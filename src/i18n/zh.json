@@ -134,7 +134,7 @@
       "watch": "观望区"
     },
     "legendTitle": "怎么看这张图",
-    "legendLine": "绿色实线：每天的 Ahr999",
+    "legendLine": "粉色实线：每天的 Ahr999",
     "legendLow": "蓝色虚线 0.45：抄底参考线（低于它更偏历史低位）",
     "legendHigh": "红色虚线 1.2：偏贵参考线（高于它定投性价比下降）",
     "zonesTitle": "三个区间，一句话看懂",
