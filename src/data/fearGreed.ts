@@ -35,7 +35,7 @@ export async function loadFearGreed(opts?: {
   }
 
   const urls = [
-    '/api/fng/?limit=1&format=json',
+    '/api/fng?limit=1&format=json',
     'https://api.alternative.me/fng/?limit=1&format=json',
   ]
 

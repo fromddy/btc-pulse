@@ -35,4 +35,22 @@ npm run preview
 
 ## Deploy
 
-Static frontend + thin Vercel serverless proxies in `/api` (CORS). Cloudflare Pages can use the same idea with Functions if preferred.
+Static frontend + same-origin `/api/*` proxies (CORS).
+
+### Netlify
+
+`netlify-cli` is a local `devDependency` (install once via `npm install`; avoids slow `npx` downloads).
+
+```bash
+npm install
+cp .env.example .env   # set VITE_* if needed
+npx netlify login
+npm run deploy         # production
+# npm run deploy:preview
+```
+
+Config lives in `netlify.toml` (build → `dist`, SPA fallback). Same-origin `/api/*` proxies are Netlify Functions under `netlify/functions/`. Set the same `VITE_*` keys in the Netlify UI (Site configuration → Environment variables) so remote builds match local.
+
+### Vercel
+
+Thin serverless proxies in `/api` + `vercel.json` SPA rewrite.
