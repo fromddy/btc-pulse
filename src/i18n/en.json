@@ -19,7 +19,8 @@
     "about": "About BTC Pulse"
   },
   "social": {
-    "welcome": "Follow me on X for more cycle notes and updates.",
+    "welcome": "Believe in crypto. Trust the cycle. Follow me on X.",
+    "donate": "Want to donate? Leave me a message on X / Twitter.",
     "followX": "Follow @{handle}",
     "openX": "Open X / Twitter",
     "missingX": "Set VITE_X_URL in .env to show the follow button"

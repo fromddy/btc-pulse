@@ -1,6 +1,6 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { BottomNav } from '../components/BottomNav'
 import { PwaUpdateBanner } from '../components/PwaUpdateBanner'
 import { ChartPage } from '../pages/ChartPage'
@@ -18,10 +18,19 @@ function DocumentTitle() {
   return null
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
+
 export default function App() {
   return (
     <PulseProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <DocumentTitle />
         <PwaUpdateBanner />
         <div className="app-shell">

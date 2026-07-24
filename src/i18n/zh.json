@@ -19,7 +19,8 @@
     "about": "关于 BTC Pulse"
   },
   "social": {
-    "welcome": "欢迎关注我的推特，获取更多周期观察与更新。",
+    "welcome": "相信加密，相信周期。来推特关注我。",
+    "donate": "如果想捐款支持，请在推特留言联系我。",
     "followX": "关注 @{handle}",
     "openX": "打开推特 / X",
     "missingX": "请在 .env 中配置 VITE_X_URL 后显示关注入口"

@@ -33,6 +33,9 @@ export function SettingsPage() {
         <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
           {t('social.welcome')}
         </p>
+        <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
+          {t('social.donate')}
+        </p>
         {env.hasX ? (
           <>
             <p className="mt-2 text-sm font-semibold text-[var(--ink)]">
