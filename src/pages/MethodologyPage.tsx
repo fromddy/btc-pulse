@@ -1,6 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { BrandMark } from '../components/BrandMark'
 
+const GLOSSARY_IDS = [
+  'ahr999',
+  'mayer',
+  'cbbi',
+  'drawdown',
+  'fng',
+  'halving',
+] as const
+
 export function MethodologyPage() {
   const { t } = useTranslation()
 
@@ -23,7 +32,33 @@ export function MethodologyPage() {
           {t('method.confidenceNote')}
         </p>
 
-        {blocks.map(([title, body]) => (
+        {blocks.slice(0, 2).map(([title, body]) => (
+          <div key={title}>
+            <h2 className="font-display text-xl">{t(title)}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
+              {t(body)}
+            </p>
+          </div>
+        ))}
+
+        <div>
+          <h2 className="font-display text-xl">{t('method.glossaryTitle')}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
+            {t('method.glossaryLead')}
+          </p>
+          <ul className="mt-3 space-y-3">
+            {GLOSSARY_IDS.map((id) => (
+              <li key={id}>
+                <p className="text-sm font-semibold">{t(`metrics.${id}`)}</p>
+                <p className="mt-1 text-sm leading-relaxed text-[var(--ink-soft)]">
+                  {t(`metrics.explain.${id}`)}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {blocks.slice(2).map(([title, body]) => (
           <div key={title}>
             <h2 className="font-display text-xl">{t(title)}</h2>
             <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">

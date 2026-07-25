@@ -31,7 +31,7 @@
     "steps": {
       "connect": "连接行情与情绪数据源",
       "price": "拉取 BTC 日线价格",
-      "sentiment": "读取 Fear & Greed 情绪",
+      "sentiment": "读取 Fear & Greed 与 CBBI",
       "indicators": "计算 Ahr999、均线与回撤",
       "verdict": "合成四维评分与周期结论"
     }
@@ -114,11 +114,43 @@
     "sma200": "SMA200",
     "gma200": "200 日定投成本",
     "fng": "恐惧贪婪",
+    "cbbi": "CBBI",
     "halving": "减半时钟",
     "daysSince": "已过 {{n}} 天",
     "daysTo": "距下次 {{n}} 天",
     "return7d": "7 日涨跌",
-    "return30d": "30 日涨跌"
+    "return30d": "30 日涨跌",
+    "zoneNow": "当前 ·",
+    "bands": {
+      "ahr999": {
+        "bottom": { "range": "<0.45", "name": "抄底区" },
+        "dca": { "range": "0.45–1.2", "name": "定投区" },
+        "watch": { "range": ">1.2", "name": "观望区" }
+      },
+      "cbbi": {
+        "bottom": { "range": "<15", "name": "底部区" },
+        "mid": { "range": "15–85", "name": "中段区" },
+        "top": { "range": ">85", "name": "顶部区" }
+      },
+      "mayer": {
+        "cold": { "range": "<1", "name": "偏冷" },
+        "mid": { "range": "1–2", "name": "中性" },
+        "hot": { "range": ">2", "name": "偏热" }
+      },
+      "drawdown": {
+        "deep": { "range": ">40%", "name": "深周期" },
+        "mid": { "range": "20–40%", "name": "中段回撤" },
+        "near": { "range": "<20%", "name": "近前高" }
+      }
+    },
+    "explain": {
+      "ahr999": "长期估值温度，看周期位置，不是短线点位。",
+      "mayer": "现价 ÷ 200 日均线，偏冷热的粗参考，不是触发器。",
+      "cbbi": "接近牛市顶部的置信度（0–100），不是买卖信号。",
+      "drawdown": "相对历史最高价跌了多少，越大越偏深周期。",
+      "fng": "短线情绪，0–100。极度恐惧偏冷，极度贪婪偏热。日频噪声较大。",
+      "halving": "距离上一轮减半走了多久、距下次还有多久。供给周期背景，不是价格目标。"
+    }
   },
   "chart": {
     "title": "Ahr999 历史",
@@ -153,9 +185,11 @@
     "title": "哲学",
     "intro": "BTC Pulse 只看比特币。它把少量日频指标收成一个周期结论，让你每天用十秒看清冷热，而不是淹没在图表里。",
     "dataTitle": "数据来源",
-    "dataBody": "主行情：Binance BTCUSDT 日线收盘价（经 Binance 公开行情主机），UTC 日切。情绪：Alternative.me Fear & Greed。减半日期为内置常量。读数约数小时刷新一次，并本地缓存以便离线查看。",
+    "dataBody": "主行情：Binance BTCUSDT 日线收盘价（经 Binance 公开行情主机），UTC 日切。情绪：Alternative.me Fear & Greed。周期：Colin Talks Crypto Bitcoin Bull Run Index（CBBI）顶部置信度。减半日期为内置常量。读数约数小时刷新一次，并本地缓存以便离线查看。",
     "ahrTitle": "Ahr999 公式",
     "ahrBody": "Ahr999 = (价格 / 200 日几何平均定投成本) × (价格 / 指数增长估值)。指数增长估值 = 10^(5.84 × log10(币龄天数) - 17.01)，创世日 2009-01-03 UTC。",
+    "glossaryTitle": "指标怎么读",
+    "glossaryLead": "和「今日」页点指标看到的白话一样；这里集中列出，方便回头查。",
     "weightsTitle": "维度权重",
     "weightsBody": "估值 35% · 趋势 35% · 情绪 20% · 周期 10%。首页只展示四维灯 + 一条总结论。",
     "limitsTitle": "局限",

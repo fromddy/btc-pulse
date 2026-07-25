@@ -31,7 +31,7 @@
     "steps": {
       "connect": "Connecting price and sentiment sources",
       "price": "Fetching BTC daily closes",
-      "sentiment": "Reading Fear & Greed",
+      "sentiment": "Reading Fear & Greed and CBBI",
       "indicators": "Computing Ahr999, averages, and drawdown",
       "verdict": "Scoring dimensions and regime"
     }
@@ -114,11 +114,43 @@
     "sma200": "SMA200",
     "gma200": "GMA200 cost",
     "fng": "Fear & Greed",
+    "cbbi": "CBBI",
     "halving": "Halving clock",
     "daysSince": "{{n}}d since",
     "daysTo": "{{n}}d to next",
     "return7d": "7D return",
-    "return30d": "30D return"
+    "return30d": "30D return",
+    "zoneNow": "Now ·",
+    "bands": {
+      "ahr999": {
+        "bottom": { "range": "<0.45", "name": "Bottom" },
+        "dca": { "range": "0.45–1.2", "name": "DCA" },
+        "watch": { "range": ">1.2", "name": "Wait" }
+      },
+      "cbbi": {
+        "bottom": { "range": "<15", "name": "Bottom" },
+        "mid": { "range": "15–85", "name": "Mid" },
+        "top": { "range": ">85", "name": "Peak" }
+      },
+      "mayer": {
+        "cold": { "range": "<1", "name": "Colder" },
+        "mid": { "range": "1–2", "name": "Mid" },
+        "hot": { "range": ">2", "name": "Hotter" }
+      },
+      "drawdown": {
+        "deep": { "range": ">40%", "name": "Deep cycle" },
+        "mid": { "range": "20–40%", "name": "Mid pullback" },
+        "near": { "range": "<20%", "name": "Near highs" }
+      }
+    },
+    "explain": {
+      "ahr999": "Long-term valuation heat. Cycle context, not a short-term entry.",
+      "mayer": "Price ÷ 200-day average. Rough cold/hot context, not a trigger.",
+      "cbbi": "Confidence near a cycle peak (0–100). Not a trade signal.",
+      "drawdown": "How far below the all-time high. Larger means deeper cycle territory.",
+      "fng": "Short-term crowd mood, 0–100. Extreme fear is often colder; extreme greed warmer. Day-to-day noise.",
+      "halving": "Where we sit in the ~4-year supply cycle since the last halving. Background timing, not a price target."
+    }
   },
   "chart": {
     "title": "Ahr999 history",
@@ -153,9 +185,11 @@
     "title": "Philosophy",
     "intro": "BTC Pulse reads Bitcoin only. It turns a small set of daily indicators into one regime verdict, so you can check the cycle without drowning in charts.",
     "dataTitle": "Data sources",
-    "dataBody": "Primary price feed: Binance BTCUSDT daily closes (via Binance public market-data hosts), UTC day boundary. Sentiment: Alternative.me Fear & Greed. Halving dates are embedded constants. Readings refresh about once every few hours and cache locally for offline use.",
+    "dataBody": "Primary price feed: Binance BTCUSDT daily closes (via Binance public market-data hosts), UTC day boundary. Sentiment: Alternative.me Fear & Greed. Cycle: Colin Talks Crypto Bitcoin Bull Run Index (CBBI) peak-confidence score. Halving dates are embedded constants. Readings refresh about once every few hours and cache locally for offline use.",
     "ahrTitle": "Ahr999 formula",
     "ahrBody": "Ahr999 = (Price / 200-day geometric mean cost) x (Price / exponential growth valuation). Exponential valuation = 10^(5.84 x log10(coin age days) - 17.01), with genesis 2009-01-03 UTC.",
+    "glossaryTitle": "How to read the metrics",
+    "glossaryLead": "Same plain reads as the Today page. Tap a chip there for a one-line tip; this page keeps the full set.",
     "weightsTitle": "Dimension weights",
     "weightsBody": "Valuation 35% · Trend 35% · Sentiment 20% · Cycle 10%. The homepage shows four lights plus one summary verdict.",
     "limitsTitle": "Limits",

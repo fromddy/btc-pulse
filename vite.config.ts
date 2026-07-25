@@ -1,13 +1,77 @@
 /// <reference types="vitest/config" />
+import type { Plugin } from 'vite'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+function slimCbbiLatest(json: {
+  Confidence?: Record<string, number>
+}): { confidence: number; asOf: number } | null {
+  const conf = json?.Confidence
+  if (!conf || typeof conf !== 'object') return null
+  const keys = Object.keys(conf)
+  if (keys.length === 0) return null
+  let latestTs = keys[0]
+  for (const k of keys) {
+    if (Number(k) > Number(latestTs)) latestTs = k
+  }
+  const raw = conf[latestTs]
+  if (typeof raw !== 'number' || !Number.isFinite(raw)) return null
+  return {
+    confidence: Math.round(raw * 100),
+    asOf: Number(latestTs),
+  }
+}
+
+/** Dev-only: slim CBBI proxy so local `/api/cbbi` matches production. */
+function cbbiDevProxy(): Plugin {
+  return {
+    name: 'cbbi-dev-proxy',
+    configureServer(server) {
+      server.middlewares.use('/api/cbbi', async (_req, res) => {
+        try {
+          const upstream = await fetch(
+            'https://colintalkscrypto.com/cbbi/data/latest.json',
+          )
+          if (!upstream.ok) {
+            res.statusCode = upstream.status
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ error: 'upstream_error' }))
+            return
+          }
+          const json = (await upstream.json()) as {
+            Confidence?: Record<string, number>
+          }
+          const slim = slimCbbiLatest(json)
+          if (!slim) {
+            res.statusCode = 502
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ error: 'parse_error' }))
+            return
+          }
+          res.statusCode = 200
+          res.setHeader('Content-Type', 'application/json')
+          res.setHeader(
+            'Cache-Control',
+            's-maxage=3600, stale-while-revalidate=86400',
+          )
+          res.end(JSON.stringify(slim))
+        } catch {
+          res.statusCode = 502
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify({ error: 'fetch_failed' }))
+        }
+      })
+    },
+  }
+}
+
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    cbbiDevProxy(),
     VitePWA({
       registerType: 'prompt',
       includeAssets: [

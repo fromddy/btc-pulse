@@ -22,6 +22,7 @@ function base(partial: Partial<IndicatorSnapshot>): IndicatorSnapshot {
     higherLow: false,
     fearGreed: 20,
     fearGreedLabel: 'Extreme Fear',
+    cbbi: null,
     daysSinceLastHalving: 100,
     daysToNextHalving: 1300,
     halvingPhase: 'early',
@@ -69,5 +70,25 @@ describe('evaluateVerdict', () => {
     )
     expect(v.regime).toBe('warm')
     expect(v.temperature).toBe('hot')
+  })
+
+  it('raises cycle score when CBBI is high', () => {
+    const low = evaluateVerdict(base({ cbbi: 15, ahr999Percentile: 0.9 }))
+    const high = evaluateVerdict(base({ cbbi: 90, ahr999Percentile: 0.1 }))
+    const cycleLow = low.dimensions.find((d) => d.id === 'cycle')!.score
+    const cycleHigh = high.dimensions.find((d) => d.id === 'cycle')!.score
+    expect(cycleHigh).toBeGreaterThan(cycleLow)
+  })
+
+  it('falls back to ahr percentile for cycle when CBBI is null', () => {
+    const coldPct = evaluateVerdict(
+      base({ cbbi: null, ahr999Percentile: 0.1, halvingPhase: 'early' }),
+    )
+    const hotPct = evaluateVerdict(
+      base({ cbbi: null, ahr999Percentile: 0.95, halvingPhase: 'early' }),
+    )
+    const cycleCold = coldPct.dimensions.find((d) => d.id === 'cycle')!.score
+    const cycleHot = hotPct.dimensions.find((d) => d.id === 'cycle')!.score
+    expect(cycleHot).toBeGreaterThan(cycleCold)
   })
 })

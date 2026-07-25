@@ -3,6 +3,7 @@ import { buildIndicatorSnapshot } from '../domain/indicators'
 import { evaluateVerdict } from '../domain/regime'
 import type { Ahr999Point, DailyBar, DailyVerdict } from '../domain/types'
 import { loadBtcDailyBars } from './binanceKlines'
+import { loadCbbi } from './cbbi'
 import { loadFearGreed } from './fearGreed'
 import { readCache, writeCache } from './cache'
 import { sleep, type LoadStepId } from './loadSteps'
@@ -35,7 +36,11 @@ export async function loadPulse(opts?: {
   await pace(120)
 
   opts?.onStep?.('sentiment')
-  const [btc, fng] = await Promise.all([btcPromise, loadFearGreed({ force })])
+  const [btc, fng, cbbi] = await Promise.all([
+    btcPromise,
+    loadFearGreed({ force }),
+    loadCbbi({ force }),
+  ])
   await pace(220)
 
   opts?.onStep?.('indicators')
@@ -44,13 +49,18 @@ export async function loadPulse(opts?: {
     fng.reading
       ? { value: fng.reading.value, classification: fng.reading.classification }
       : null,
+    cbbi.reading ? { value: cbbi.reading.value } : null,
   )
   const ahr999Series = computeAhr999Series(btc.bars)
   await pace(260)
 
   opts?.onStep?.('verdict')
-  const fetchedAt = Math.max(btc.fetchedAt, fng.fetchedAt ?? btc.fetchedAt)
-  const fromCache = btc.fromCache && fng.fromCache
+  const fetchedAt = Math.max(
+    btc.fetchedAt,
+    fng.fetchedAt ?? btc.fetchedAt,
+    cbbi.fetchedAt ?? btc.fetchedAt,
+  )
+  const fromCache = btc.fromCache && fng.fromCache && cbbi.fromCache
   const verdict = evaluateVerdict(indicators, {
     fromCache,
     updatedAt: fetchedAt,

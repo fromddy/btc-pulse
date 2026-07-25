@@ -99,6 +99,7 @@ export function halvingPosition(asOfMs: number): {
 export function buildIndicatorSnapshot(
   bars: DailyBar[],
   fearGreed: { value: number; classification: string } | null,
+  cbbi: { value: number } | null = null,
 ): IndicatorSnapshot {
   if (bars.length < 200) {
     throw new Error('Need at least 200 daily bars')
@@ -144,6 +145,7 @@ export function buildIndicatorSnapshot(
     higherLow: hasHigherLow(bars),
     fearGreed: fearGreed?.value ?? null,
     fearGreedLabel: fearGreed?.classification ?? null,
+    cbbi: cbbi?.value ?? null,
     daysSinceLastHalving: halv.daysSinceLastHalving,
     daysToNextHalving: halv.daysToNextHalving,
     halvingPhase: halv.halvingPhase,

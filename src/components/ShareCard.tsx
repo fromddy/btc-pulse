@@ -110,8 +110,8 @@ function buildCopy(
     reason: t(verdict.reasonKey, verdict.reasonParams),
     ahr999Label: t('metrics.ahr999'),
     mayerLabel: t('metrics.mayer'),
+    cbbiLabel: t('metrics.cbbi'),
     drawdownLabel: t('metrics.drawdown'),
-    priceLabel: t('metrics.price'),
     footer: t('share.footer'),
     dateLabel: formatDate(verdict.updatedAt, lng),
   }

@@ -61,26 +61,27 @@ function scoreSentiment(i: IndicatorSnapshot): number {
   return clamp01(i.fearGreed / 100)
 }
 
-function scoreCycle(i: IndicatorSnapshot): number {
-  // Blend percentile heat with halving phase background
-  const pct = Number.isFinite(i.ahr999Percentile)
-    ? i.ahr999Percentile
-    : 0.5
-  let phase = 0.5
+function halvingPhaseHeat(i: IndicatorSnapshot): number {
   switch (i.halvingPhase) {
     case 'early':
-      phase = 0.35
-      break
+      return 0.35
     case 'mid':
-      phase = 0.55
-      break
+      return 0.55
     case 'late':
-      phase = 0.7
-      break
+      return 0.7
     case 'pre':
-      phase = 0.4
-      break
+      return 0.4
   }
+}
+
+function scoreCycle(i: IndicatorSnapshot): number {
+  const phase = halvingPhaseHeat(i)
+  // CBBI is peak-confidence 0–100: high = nearer cycle top = hotter.
+  if (i.cbbi != null) {
+    return clamp01((i.cbbi / 100) * 0.7 + phase * 0.3)
+  }
+  // Fallback: Ahr999 percentile heat + halving phase background
+  const pct = Number.isFinite(i.ahr999Percentile) ? i.ahr999Percentile : 0.5
   return clamp01(pct * 0.7 + phase * 0.3)
 }
 
@@ -112,6 +113,7 @@ function pickConfidence(i: IndicatorSnapshot, trend: number): Confidence {
   if (i.higherLow && i.aboveSma200) points += 1
   if (i.volumeExpanding === i.return7d > 0) points += 1
   if (i.fearGreed != null) points += 1
+  if (i.cbbi != null) points += 1
   if (trend > 0.6 && !i.aboveSma200) return 'low'
   if (points >= 3 && (i.aboveSma200 || i.ahr999 < 0.45)) return 'high'
   if (points >= 2) return 'medium'

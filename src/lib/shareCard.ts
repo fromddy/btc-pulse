@@ -9,8 +9,8 @@ export interface ShareCardCopy {
   reason: string
   ahr999Label: string
   mayerLabel: string
+  cbbiLabel: string
   drawdownLabel: string
-  priceLabel: string
   footer: string
   dateLabel: string
 }
@@ -193,17 +193,12 @@ export function renderShareCardPng(
   drawLines(ctx, reasonLines, left, y, 46)
   y += reasonLines.length * 46 + 40
 
-  // Metrics 2x2, symmetric
-  const price = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(i.price)
+  // Metrics 2x2, symmetric (matches Today hero)
   const metrics = [
     [copy.ahr999Label, i.ahr999.toFixed(2)],
     [copy.mayerLabel, i.mayer.toFixed(2)],
+    [copy.cbbiLabel, i.cbbi == null ? 'n/a' : String(i.cbbi)],
     [copy.drawdownLabel, `${(i.drawdownFromAth * 100).toFixed(1)}%`],
-    [copy.priceLabel, price],
   ] as const
 
   const gap = 20

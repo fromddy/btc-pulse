@@ -38,6 +38,8 @@ export interface IndicatorSnapshot {
   higherLow: boolean
   fearGreed: number | null
   fearGreedLabel: string | null
+  /** CBBI peak-confidence score 0–100; null if unavailable. */
+  cbbi: number | null
   daysSinceLastHalving: number
   daysToNextHalving: number
   halvingPhase: 'early' | 'mid' | 'late' | 'pre'

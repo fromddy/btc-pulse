@@ -12,6 +12,14 @@ export function MetricPanel({ i }: { i: IndicatorSnapshot }) {
 
   const rows = [
     {
+      label: t('metrics.price'),
+      value: new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0,
+      }).format(i.price),
+    },
+    {
       label: t('metrics.sma200'),
       value: i.sma200.toLocaleString('en-US', { maximumFractionDigits: 0 }),
     },
